@@ -1,14 +1,17 @@
 package com.expenseworld.reimburse.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name="EXPENSE")
 public class Expense {
     @Id
     @GeneratedValue
     private Long id;
+
+    @OneToMany(targetEntity = Receipt.class, mappedBy = "expense", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Receipt> receipts;
 
     public Expense() {
     }
@@ -31,11 +34,13 @@ public class Expense {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public List<Receipt> getReceipts() {
+        return receipts;
     }
+
+    public void setReceipts(List<Receipt> receipts) {
+        this.receipts = receipts;
+    }
+
+
 }
