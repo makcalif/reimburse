@@ -1,5 +1,7 @@
 package com.expenseworld.reimburse.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +24,7 @@ public class Receipt {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "expense_id", nullable = false)
     private Expense expense;
 

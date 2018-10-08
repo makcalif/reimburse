@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
-//@RestController
+@RestController
 // try @RepositoryRestResource in repository for HATEOAS
 public class ExpenseController {
 
@@ -19,7 +19,7 @@ public class ExpenseController {
         this.expensesRepository = expensesRepository;
     }
 
-    @RequestMapping("/expenses")
+    @RequestMapping("api/expenses")
     Collection<Expense> expenses () {
         return this.expensesRepository.findAll();
     }
